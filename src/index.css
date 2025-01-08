@@ -1,3 +1,4 @@
+/* Import Tailwind's base, components, and utilities */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -31,6 +32,13 @@ html {
 
 /* Custom button styles */
 .btn-primary {
-  @apply bg-[#ff4d4d] text-white px-8 py-3 rounded-full hover:bg-[#ff3333] transition-colors duration-300;
+  background-color: #ff4d4d; /* Tailwind's custom red color */
+  color: white;
+  padding: 1rem 2rem; /* Equivalent to px-8 py-3 */
+  border-radius: 9999px; /* Equivalent to rounded-full */
+  transition: background-color 0.3s ease;
 }
 
+.btn-primary:hover {
+  background-color: #ff3333; /* Darker red for hover */
+}
