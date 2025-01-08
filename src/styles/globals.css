@@ -1,0 +1,18 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --transition-duration: 0.3s;
+}
+
+body {
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.dark {
+  @apply bg-gray-900 text-white;
+}
+
+/* Add any additional global styles here */
+
