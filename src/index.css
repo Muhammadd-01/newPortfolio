@@ -7,25 +7,30 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.leaflet-container {
-  height: 100%;
-  width: 100%;
-}
-
-/* Glowing effect for buttons and links */
-.glow-on-hover:hover {
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.7);
-}
-
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Dark mode transition */
-.dark {
-  transition: all 0.3s ease-in-out;
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-/* Add more custom styles as needed */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-[#ff4d4d] text-white px-8 py-3 rounded-full hover:bg-[#ff3333] transition-colors duration-300;
+}
 

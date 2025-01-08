@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { useTheme } from '../contexts/ThemeContext';
@@ -10,18 +10,15 @@ const Layout = ({ children }) => {
 
   return (
     <div className={`min-h-screen ${theme}`}>
-      <ThemeToggle />
       <Navbar />
-      <AnimatePresence mode="wait">
-        <motion.main
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="pt-16"
-        >
-          {children}
-        </motion.main>
-      </AnimatePresence>
+      <ThemeToggle />
+      <motion.main
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+      >
+        {children}
+      </motion.main>
       <Footer />
     </div>
   );

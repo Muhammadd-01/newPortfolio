@@ -1,88 +1,114 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownCircle } from 'lucide-react';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
+import NetworkBackground from './NetworkBackground';
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Hero Background"
-          className="object-cover w-full h-full"
-          width={1920}
-          height={1080}
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+    <div className="relative min-h-screen bg-gray-900 overflow-hidden">
+      {/* Network Background */}
+      <NetworkBackground />
 
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row items-center justify-center"
-        >
+      {/* Navigation */}
+      <nav className="absolute top-0 left-0 w-full z-10 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white/20 shadow-lg mb-8 md:mb-0 md:mr-8"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <Image
-              src="/placeholder.svg?height=192&width=192"
-              alt="Your Name"
-              width={192}
-              height={192}
-              className="object-cover"
-              priority
-            />
+            <Link to="/" className="text-[#ff4d4d] text-3xl font-bold">
+              Farin
+            </Link>
           </motion.div>
 
-          <div className="text-left">
-            <motion.h1
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="hidden md:flex space-x-8"
+          >
+            {['Home', 'About', 'Service', 'Portfolio', 'Resume', 'Blog', 'Contact'].map((item) => (
+              <Link
+                key={item}
+                to={`/${item.toLowerCase()}`}
+                className="text-white hover:text-[#ff4d4d] transition-colors duration-300"
+              >
+                {item}
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+      </nav>
+
+      {/* Hero Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-[#ff4d4d] text-2xl mb-4"
             >
-              Hi, I'm [Your Name]
-            </motion.h1>
-
-            <motion.p
+              HELLO!
+            </motion.h2>
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl mb-8"
+              className="text-white text-5xl md:text-6xl font-bold mb-6"
             >
-              A passionate full-stack developer creating beautiful and functional web experiences
-            </motion.p>
-
-            <motion.div
+              I Am Tasnia Farin
+            </motion.h1>
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
+              className="text-gray-300 text-lg mb-8 max-w-xl"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              I'm a Web Developer with extensive experience for over 5 years. My expertise is to create
+              and Websites design, graphic design and many more...
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="flex space-x-4"
+            >
+              <Link
+                to="/portfolio"
+                className="bg-[#ff4d4d] text-white px-8 py-3 rounded-full hover:bg-[#ff3333] transition-colors duration-300"
               >
-                View My Work
-              </motion.button>
+                View Work
+              </Link>
+              <Link
+                to="/contact"
+                className="bg-[#ff4d4d] text-white px-8 py-3 rounded-full hover:bg-[#ff3333] transition-colors duration-300"
+              >
+                Hire Me
+              </Link>
             </motion.div>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
-      >
-        <ArrowDownCircle className="w-8 h-8 animate-bounce" />
-      </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="hidden lg:block"
+          >
+            <img
+              src="/profile-image.jpg" // Replace with your actual image
+              alt="Tasnia Farin"
+              className="w-full h-auto rounded-lg shadow-2xl"
+            />
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 };
