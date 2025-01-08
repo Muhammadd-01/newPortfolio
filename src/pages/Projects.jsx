@@ -4,95 +4,95 @@ import { motion, AnimatePresence } from 'framer-motion';
 const projects = [
   {
     id: 1,
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce solution built with React, Node.js, and MongoDB.',
-    image: '/images/project1.jpg',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-    liveDemo: 'https://example.com/project1',
-    sourceCode: 'https://github.com/yourusername/project1',
+    title: 'E-commerce Website',
+    description: 'A fully functional e-commerce app built with React and Node.js.',
+    category: 'React.js Applications',
+    image: '/placeholder.svg?height=300&width=400',
+    demoLink: 'https://ecommerce.example.com',
+    repoLink: 'https://github.com/user/ecommerce'
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'A responsive task management application with real-time updates.',
-    image: '/images/project2.jpg',
-    technologies: ['React', 'Firebase', 'Material-UI'],
-    liveDemo: 'https://example.com/project2',
-    sourceCode: 'https://github.com/yourusername/project2',
+    title: 'Portfolio Website',
+    description: 'A responsive portfolio website showcasing my projects and skills.',
+    category: 'UI/UX Design',
+    image: '/placeholder.svg?height=300&width=400',
+    demoLink: 'https://portfolio.example.com',
+    repoLink: 'https://github.com/user/portfolio'
   },
   {
     id: 3,
-    title: 'Weather Dashboard',
-    description: 'An interactive weather dashboard with data visualization.',
-    image: '/images/project3.jpg',
-    technologies: ['React', 'D3.js', 'OpenWeather API'],
-    liveDemo: 'https://example.com/project3',
-    sourceCode: 'https://github.com/yourusername/project3',
+    title: 'Task Management App',
+    description: 'A full-stack task management application with user authentication.',
+    category: 'Full-Stack Development',
+    image: '/placeholder.svg?height=300&width=400',
+    demoLink: 'https://taskmanager.example.com',
+    repoLink: 'https://github.com/user/taskmanager'
+  },
+  {
+    id: 4,
+    title: 'Open Source Library',
+    description: 'A popular open-source library for handling date and time in JavaScript.',
+    category: 'Open Source Contributions',
+    image: '/placeholder.svg?height=300&width=400',
+    demoLink: 'https://datelib.example.com',
+    repoLink: 'https://github.com/user/datelib'
+  },
+  {
+    id: 5,
+    title: 'Weather App',
+    description: 'A simple weather application built for learning purposes.',
+    category: 'Personal/Fun Projects',
+    image: '/placeholder.svg?height=300&width=400',
+    demoLink: 'https://weather.example.com',
+    repoLink: 'https://github.com/user/weather-app'
   },
 ];
 
-const ProjectModal = ({ project, onClose }) => {
+const categories = ['All', 'React.js Applications', 'UI/UX Design', 'Full-Stack Development', 'Open Source Contributions', 'Personal/Fun Projects'];
+
+const ProjectCard = ({ project }) => {
   return (
     <motion.div
+      layout
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-      onClick={onClose}
+      className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg"
     >
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -50, opacity: 0 }}
-        className="bg-white dark:bg-gray-800 p-8 rounded-lg max-w-3xl w-full mx-4"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <h2 className="text-3xl font-bold mb-4 text-gray-800 dark:text-white">{project.title}</h2>
-        <img src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-lg mb-4" />
+      <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">{project.title}</h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-        <div className="mb-4">
-          <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Technologies Used:</h3>
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, index) => (
-              <span key={index} className="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-sm">
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
         <div className="flex justify-between">
           <a
-            href={project.liveDemo}
+            href={project.demoLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-300"
+            className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
           >
             Live Demo
           </a>
           <a
-            href={project.sourceCode}
+            href={project.repoLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+            className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
           >
             Source Code
           </a>
         </div>
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [filter, setFilter] = useState('All');
+
+  const filteredProjects = filter === 'All'
+    ? projects
+    : projects.filter(project => project.category === filter);
 
   return (
     <motion.div
@@ -103,29 +103,31 @@ const Projects = () => {
     >
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-10 text-gray-800 dark:text-white">My Projects</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {categories.map((category) => (
+            <motion.button
+              key={category}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer"
-              onClick={() => setSelectedProject(project)}
+              onClick={() => setFilter(category)}
+              className={`px-4 py-2 rounded-full ${
+                filter === category
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+              } hover:bg-indigo-500 hover:text-white transition-colors duration-300`}
             >
-              <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{project.description}</p>
-              </div>
-            </motion.div>
+              {category}
+            </motion.button>
           ))}
         </div>
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-        )}
-      </AnimatePresence>
     </motion.div>
   );
 };

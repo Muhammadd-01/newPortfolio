@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import Skills from '../components/Skills';
+import TechStack from '../components/TechStack';
 import Testimonials from '../components/Testimonials';
 import Blog from '../components/Blog';
 import { NextSeo } from 'next-seo';
@@ -21,6 +22,7 @@ const Home = () => {
       />
       <Hero />
       <Skills />
+      <TechStack />
       <Testimonials />
       <Blog />
     </Layout>

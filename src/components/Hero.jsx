@@ -1,18 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useParallax } from 'react-scroll-parallax';
+import { useSpring, animated } from 'react-spring';
 import { ArrowDownCircle } from 'lucide-react';
 import Image from 'next/image';
 
 const Hero = () => {
-  const parallax = useParallax({
-    speed: -10,
+  const parallaxProps = useSpring({
+    from: { transform: 'translate3d(0,-20px,0)' },
+    to: { transform: 'translate3d(0,0,0)' },
+    config: { mass: 10, tension: 550, friction: 140 },
   });
 
   return (
-    <div className="relative h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax */}
-      <div ref={parallax.ref} className="absolute inset-0 z-0">
+      <animated.div style={parallaxProps} className="absolute inset-0 z-0">
         <Image
           src="/placeholder.svg?height=1080&width=1920"
           alt="Hero Background"
@@ -22,10 +24,10 @@ const Hero = () => {
           priority
         />
         <div className="absolute inset-0 bg-black/50" />
-      </div>
+      </animated.div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4">
+      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,13 +37,13 @@ const Hero = () => {
           <div className="mb-8 relative">
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/20 shadow-lg"
+              className="w-40 h-40 rounded-full overflow-hidden border-4 border-white/20 shadow-lg"
             >
               <Image
-                src="/placeholder.svg?height=128&width=128"
+                src="/placeholder.svg?height=160&width=160"
                 alt="Profile"
-                width={128}
-                height={128}
+                width={160}
+                height={160}
                 className="object-cover"
                 priority
               />
@@ -52,7 +54,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-6xl font-bold mb-4"
+            className="text-5xl md:text-6xl font-bold mb-4"
           >
             Hi, I'm [Your Name]
           </motion.h1>
